@@ -9,6 +9,9 @@ class SmartPhone(models.Model):
     name = models.CharField(max_length=30)
     model = models.CharField(max_length=30)
 
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.name
     
@@ -21,6 +24,8 @@ class SmartPhone(models.Model):
             'ram':self.ram,
             'memory':self.memory,
             'name':self.name,
-            'model':self.model
+            'model':self.model,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
         }
         return returned

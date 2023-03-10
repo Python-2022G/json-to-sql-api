@@ -23,8 +23,8 @@ def add_product(reqeust: HttpRequest) -> JsonResponse:
         model = data.get('model', False)
 
         # check all properties is valid
-        if price == False:
-            return JsonResponse({"status": "price field is required."})
+        if price == False or type(price) != float:
+            return JsonResponse({"status": "price field is required. or float"})
         if img_url == False:
             return JsonResponse({"status": "img_url field is required."})
         if color == False:
@@ -39,7 +39,7 @@ def add_product(reqeust: HttpRequest) -> JsonResponse:
             return JsonResponse({"status": "model field is required."})
 
         # create a inctance of SmartPhone 
-        smartphone = SmartPhone(
+        smartphone = SmartPhone.objects.create(
             price=price,
             img_url=img_url,
             color=color,
