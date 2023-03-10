@@ -63,10 +63,15 @@ def get_all_product(reqeust: HttpRequest) -> JsonResponse:
         products = SmartPhone.objects.all()
         # results data
         result = []
+        args = reqeust.GET
+
         for product in products:
-            # add smartphone data as dict
-            result.append(product.to_dict())
-        
+            if args.get('ram'):
+                if product.ram == int(args['ram']):
+                    # add smartphone data as dict
+                    result.append(product.to_dict())
+            else:
+                result.append(product.to_dict())
         return JsonResponse(result, safe=False)
     
 
@@ -83,7 +88,7 @@ def get_product(reqeust: HttpRequest, pk: int) -> JsonResponse:
 
 def delete_product(reqeust: HttpRequest, pk: int) -> JsonResponse:
     """delete product from database by id"""
-    if reqeust.method == "POST":
+    if reqeust.method == "GET":
         try:
             # get product from database by id
             product = SmartPhone.objects.get(id=pk)
