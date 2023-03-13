@@ -146,11 +146,11 @@ def update_product(reqeust: HttpRequest, pk: int) -> JsonResponse:
             return JsonResponse({"status": "object doesn't exist"})
 
 
-def get_products_by_model(request: HttpRequest, model: str) -> JsonResponse:
+def get_products_by_model(request: HttpRequest, model: str, ram: int) -> JsonResponse:
     '''get products by model'''
     print(model)
     # get all smartphones by model
-    products = SmartPhone.objects.filter(model=model)
+    products = SmartPhone.objects.filter(model=model, ram=ram)
     
     # result
     result = []
