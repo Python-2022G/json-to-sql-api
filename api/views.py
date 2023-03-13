@@ -146,4 +146,15 @@ def update_product(reqeust: HttpRequest, pk: int) -> JsonResponse:
             return JsonResponse({"status": "object doesn't exist"})
 
 
+def get_products_by_model(request: HttpRequest, model: str) -> JsonResponse:
+    '''get products by model'''
+    print(model)
+    # get all smartphones by model
+    products = SmartPhone.objects.filter(model=model)
+    
+    # result
+    result = []
+    for product in products:
+        result.append(product.to_dict())
 
+    return JsonResponse(result, safe=False)
