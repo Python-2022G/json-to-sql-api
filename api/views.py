@@ -172,3 +172,10 @@ def get_products_by_price(request: HttpRequest, price: str):
         result.append(product.to_dict())
 
     return JsonResponse(result, safe=False)
+
+
+def get_products_in_range(request: HttpRequest):
+    '''get in range'''
+    args = request.GET.getlist('model')
+    print(type(args))
+    return JsonResponse({})
