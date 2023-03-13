@@ -180,7 +180,7 @@ def get_products_in_range(request: HttpRequest):
     max = float(args['max'])
     min = float(args['min'])
 
-    products = SmartPhone.objects.filter(price__gt=min, price__lt=max)
+    products = SmartPhone.objects.filter(price__range=[min, max])
     
     # result
     result = []
