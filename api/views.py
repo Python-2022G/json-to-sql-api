@@ -158,3 +158,17 @@ def get_products_by_model(request: HttpRequest, model: str, ram: int) -> JsonRes
         result.append(product.to_dict())
 
     return JsonResponse(result, safe=False)
+
+
+def get_products_by_price(request: HttpRequest, price: str):
+    '''get by price'''
+    price = float(price)
+    print(price)
+    products = SmartPhone.objects.filter(price__gte=price)
+    
+    # result
+    result = []
+    for product in products:
+        result.append(product.to_dict())
+
+    return JsonResponse(result, safe=False)

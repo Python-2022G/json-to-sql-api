@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api.views import add_product, get_all_product, get_product, delete_product, update_product, get_products_by_model
+from api.views import add_product, get_all_product, get_product, delete_product, update_product, get_products_by_model, get_products_by_price
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('del/<int:pk>', delete_product),
     path('update/<int:pk>', update_product),
     path('get/<str:model>/<int:ram>', get_products_by_model),
+    path('price/<str:price>', get_products_by_price),
 ]
  
