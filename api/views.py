@@ -176,6 +176,15 @@ def get_products_by_price(request: HttpRequest, price: str):
 
 def get_products_in_range(request: HttpRequest):
     '''get in range'''
-    args = request.GET.getlist('model')
-    print(type(args))
-    return JsonResponse({})
+    args = request.GET
+    max = float(args['max'])
+    min = float(args['min'])
+
+    products = SmartPhone.objects.filter(price__gt=min, price__lt=max)
+    
+    # result
+    result = []
+    for product in products:
+        result.append(product.to_dict())
+
+    return JsonResponse(result, safe=False)

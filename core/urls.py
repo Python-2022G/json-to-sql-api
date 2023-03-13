@@ -26,7 +26,6 @@ urlpatterns = [
     path('update/<int:pk>', update_product),
     path('get/<str:model>/<int:ram>', get_products_by_model),
     path('price/<str:price>', get_products_by_price),
-    path('price/', get_products_by_price),
-    path('get/model', get_products_in_range),
+    path('price/', get_products_in_range),
 ]
  
